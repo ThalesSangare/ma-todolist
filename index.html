@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="SANGARE_KABINE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.json">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Todo List</h1>
+        <div class="input-container">
+          <input class="todo-input" placeholder="Ajoutez une tache...">
+          <button class="add-button">
+            <i class="bi bi-plus-circle"></i>
+          </button>
+        </div>
+        <div class="filters">
+          <div class="filter" data-filter="completed">Complete</div>
+          <div class="filter" data-filter="pending">Incomplete</div>
+          <div class="delete-all">Delete All</div>
+        </div>
+        <div class="todos-container">
+          <ul class="todos"></ul>
+          <img class="empty-image" src="images/empty.svg">
+        </div>
+      </div>
+      <script src="js/script.js"></script>
+      <script>
+        // script pour la gestion du coté mobile
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js')
+          .then(() => console.log("Service Worker enregistré !"))
+          .catch(err => console.error("Erreurlors de l'enreg du service worker :", err));
+      }
+      </script>
+</body>
+</html>

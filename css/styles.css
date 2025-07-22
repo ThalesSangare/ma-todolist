@@ -1,0 +1,234 @@
+/* Remise à zéro des marges et paddings de tous les éléments + box-sizing pour un comportement plus prévisible */
+*, 
+*::before, 
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style général du body */
+body {
+  font-family: 'Roboto', sans-serif; /* Police d'écriture */
+  height: 100vh; /* Hauteur sur toute la hauteur de l'écran */
+  display: flex; /* Pour centrer le container */
+  align-items: center;
+  justify-content: center;
+  background: url(../images/background.jpg) no-repeat; /* Image de fond */
+  background-position: center;
+  background-size: cover;
+}
+
+/* Style du conteneur principal */
+.container {
+  width: 400px;
+  min-height: 400px;
+  padding: 30px;
+  background: transparent;
+  border: 2px solid #e6b7eca1; /* Bordure légèrement violette */
+  border-radius: 10px;
+  backdrop-filter: blur(15px); /* Flou derrière le container */
+}
+
+/* Titre principal */
+h1 {
+  color: #eee;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+/* Conteneur de l'input + bouton */
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+/* Champ d'entrée */
+.todo-input {
+  flex: 1; /* Prend tout l'espace disponible */
+  outline: none;
+  padding: 10px 10px 10px 20px;
+  background-color: transparent;
+  border: 2px solid #e6b7eca1;
+  border-radius: 30px;
+  color: #eee;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+/* Placeholder du champ d'entrée */
+.todo-input::placeholder {
+  color: #bfbfbf;
+}
+
+/* Bouton d'ajout */
+.add-button {
+  border: none;
+  outline: none;
+  background: #e6b7eca1;
+  color: #fff;
+  font-size: 35px;
+  cursor: pointer;
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+/* Image vide affichée quand il n'y a aucune tâche */
+.empty-image {
+  margin: 55px auto 0;
+  display: block;
+}
+
+/* Style des tâches */
+.todo {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #463c7b;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 2px solid #e6b7eca1;
+  transition: all 0.2s ease;
+}
+
+/* Premier et dernier enfant pour éviter les marges inutiles */
+.todo:first-child {
+  margin-top: 0;
+}
+
+.todo:last-child {
+  margin-bottom: 0;
+}
+
+/* Changement de couleur au survol */
+.todo:hover {
+  background-color: #e6b7eca1;
+}
+
+/* Style du label (texte de la tâche) */
+.todo label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #eee;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Texte de la tâche */
+.todo span {
+  padding-left: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Cercle devant chaque tâche */
+span::before {
+  content: "";
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  margin-left: -30px;
+  border-radius: 100px;
+  border: 2px solid #e6b7eca1;
+}
+
+/* Cache les checkbox par défaut */
+input[type='checkbox'] {
+  visibility: hidden;
+}
+
+/* Barre sur le texte si la tâche est cochée */
+input:checked + span {
+  text-decoration: line-through;
+}
+
+/* Coche verte avec image quand la tâche est complétée */
+.todo:hover input:checked + span::before, 
+input:checked + span::before {
+  background: url(../images/check.svg) 50% 50% no-repeat #09bb21;
+  border-color: #09bb21;
+}
+
+/* Changement de couleur de la bordure quand on survole */
+.todo:hover span::before {
+  border-color: #eee;
+}
+
+/* Bouton de suppression d'une tâche */
+.todo .delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #eee;
+  font-size: 24px;
+}
+
+/* Conteneur de la liste des tâches avec scroll */
+.todos-container {
+  height: 300px;
+  overflow: overlay;
+}
+
+/* Style de la piste du scrollbar */
+.todos-container::-webkit-scrollbar-track {
+  background: rgb(247, 247, 247);
+  border-radius: 20px;
+}
+
+/* Scrollbar cachée par défaut */
+.todos-container::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Scrollbar visible au survol */
+.todos-container:hover::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Scrollbar thumb */
+.todos-container::-webkit-scrollbar-thumb {
+  background: #d5d5d5;
+  border-radius: 20px;
+}
+
+/* Conteneur des filtres */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+/* Style d'un filtre */
+.filter {
+  color: #eee;
+  padding: 5px 15px;
+  border-radius: 100px;
+  border: 2px solid #e6b7eca1;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+/* Effet actif ou survol du filtre */
+.filter.active, 
+.filter:hover {
+  background-color: #e6b7eca1;
+}
+
+/* Bouton pour supprimer toutes les tâches */
+.delete-all {
+  display: flex;
+  color: #eee;
+  padding: 7px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Effet au survol du bouton "Delete All" */
+.delete-all:hover {
+  border-radius: 5px;
+  background-color: #e6b7eca1;
+}
