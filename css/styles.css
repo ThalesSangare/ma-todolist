@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+#signé {
+  color: #e6b7eca1;
+  font-size: 8px;
+  text-align: right;
+}
 /* Style général du body */
 body {
   font-family: 'Roboto', sans-serif; /* Police d'écriture */
